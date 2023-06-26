@@ -61,12 +61,14 @@ const getRaindrops = async (params: BlockQueryMap, accessToken: string) => {
 		return raindrops;
   }
 
-	const raindropIDArr = params.raindropIDs.split(",");
-  for (const raindropID of raindropIDArr) {
-    const result = await getRaindrop(parseInt(raindropID), accessToken);
+  if(params.raindropIDs != null) {
+    const raindropIDArr = params.raindropIDs.split(",");
+    for (const raindropID of raindropIDArr) {
+      const result = await getRaindrop(parseInt(raindropID), accessToken);
 
-    if (result.item !== undefined) {
-      raindrops.push(result.item);
+      if (result.item !== undefined) {
+        raindrops.push(result.item);
+      }
     }
   }
 
